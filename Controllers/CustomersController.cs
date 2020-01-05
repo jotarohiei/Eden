@@ -4,16 +4,28 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Eden.Models;
+using System.Data.Entity;
 
 namespace Eden.Controllers
 {
     public class CustomersController : Controller
     {
         // GET: Customers
+        private ApplicationDbContext _context;
+
+        public CustomersController()
+        {
+            _context = new ApplicationDbContext(); //initialization ; _context is a disposable object
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
         public ViewResult Index()
         {
 
-            var customers = GetCustomers();
+            var customers = _context.Customers.Include(c => c.MembershipType).ToList();  // the .Customers method is a Db Set defined in hte Db Context. This is a defered exectution, not an actual query.
 
             return View(customers);
         }
@@ -21,7 +33,7 @@ namespace Eden.Controllers
         [Route("Customers/Details/{Id}")]
         public ActionResult Details(int Id)
         {
-            var customer = GetCustomers().SingleOrDefault(c => c.Id == Id);  // ???
+            var customer = _context.Customers.Include(m => m.MembershipType).ToList().SingleOrDefault(c => c.Id == Id);  // ???
 
             if (customer == null)
                 return HttpNotFound();
@@ -29,6 +41,8 @@ namespace Eden.Controllers
             return View(customer);
         }
 
+
+        /* Hardcoding data entries :
         private IEnumerable<Customer> GetCustomers()  // must study IEnumerables further, but this basically assigns a list of customers 
                                                       // to GetCustomers() . 
         {
@@ -39,5 +53,7 @@ namespace Eden.Controllers
                 new Customer { Id = 3, Name = "Blaire Hathaway"}
             };
         }
+        */
+
     }
 }

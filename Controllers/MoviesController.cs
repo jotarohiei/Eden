@@ -11,6 +11,46 @@ namespace Eden.Controllers
     public class MoviesController : Controller
     {
         // GET: Movies
+
+        private ApplicationDbContext _context;
+
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
+
+        public ActionResult Index()
+        {
+            var movies = _context.Movies.ToList();
+
+            return View(movies);
+        }
+
+        [Route("movies/released/{year}/{month:regex(\\d{2}):range(1,12)}")]
+        public ActionResult ByReleaseYear(int year, int month)
+        {
+            return Content(year + "/" + month);
+        }
+
+        [Route("Movies/Details/{Id}")]
+        public ActionResult Details(int Id)
+        {
+            var customer = _context.Movies.ToList().SingleOrDefault(c => c.Id == Id);  // ???
+
+            if (customer == null)
+                return HttpNotFound();
+
+            return View(customer);
+        }
+
+
+                /*
         public ActionResult Random()
         {
             var shrek = new Movie() { Name = "Shrek" };
@@ -38,29 +78,7 @@ namespace Eden.Controllers
             return Content("ID: " + id);
         }
 
-        public ActionResult Index()
-        {
-            var movies = GetMovies();
 
-            return View(movies);
-        }
-
-        [Route("movies/released/{year}/{month:regex(\\d{2}):range(1,12)}")]
-        public ActionResult ByReleaseYear(int year, int month)
-        {
-            return Content(year + "/" + month);
-        }
-
-        [Route("Movies/Details/{Id}")]
-        public ActionResult Details(int Id)
-        {
-            var customer = GetMovies().SingleOrDefault(c => c.Id == Id);  // ???
-
-            if (customer == null)
-                return HttpNotFound();
-
-            return View(customer);
-        }
 
         private IEnumerable<Movie> GetMovies()
         {
@@ -71,6 +89,14 @@ namespace Eden.Controllers
                 new Movie { Id = 3, Name = "Bad Boys"}
             };
         }
+
+                [Route("movies/released/{year}/{month:regex(\\d{2}):range(1,12)}")]
+        public ActionResult ByReleaseYear(int year, int month)
+        {
+            return Content(year + "/" + month);
+        }
+
+        */
     }
 }
     
