@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Eden.Models;
 using System.Data.Entity;
+using Eden.ViewModels;
 
 namespace Eden.Controllers
 {
@@ -41,6 +42,25 @@ namespace Eden.Controllers
             return View(customer);
         }
 
+        public ActionResult New()
+        {
+            var membershipTypes = _context.MembershipTypes.ToList();
+            var viewModel = new NewCustomerViewModel
+            {
+                MembershipTypes = membershipTypes
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Create(Customer customer)
+        {
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index","Customers");
+        }
 
         /* Hardcoding data entries :
         private IEnumerable<Customer> GetCustomers()  // must study IEnumerables further, but this basically assigns a list of customers 
