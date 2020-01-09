@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Eden.Models;
 using Eden.ViewModels;
+using System.Data.Entity;
 
 namespace Eden.Controllers
 {
@@ -49,6 +50,42 @@ namespace Eden.Controllers
             return View(customer);
         }
 
+        public ActionResult New()
+        {
+            var movie = new Movie();
+            return View("MovieForm", movie);
+        }
+
+        [HttpPost]
+        public ActionResult Save(Movie movie)
+        {
+            if (movie.Id == 0)
+                _context.Movies.Add(movie);
+            else
+            {
+                var movieInDb = _context.Movies.Single(m => m.Id == movie.Id);
+
+                movieInDb.Name = movie.Name;
+                movieInDb.Genre = movie.Genre;
+                movieInDb.ReleaseDate = movie.ReleaseDate;
+                movieInDb.DateAdded = movie.DateAdded;
+                movieInDb.NumberInStock = movie.NumberInStock;
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Movies");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+
+            if (movie == null)
+                return HttpNotFound();
+
+            return View("MovieForm", movie);
+        }
 
                 /*
         public ActionResult Random()
