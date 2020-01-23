@@ -17,9 +17,11 @@ namespace Eden.Models
         [Required]
         public string Genre { get; set; }
 
+        [Required]
         [Display(Name = "Release Date")]
         public string ReleaseDate { get; set; }
 
+        [Required]
         [Display(Name = "Date Added")]
         public string DateAdded { get; set; }
 

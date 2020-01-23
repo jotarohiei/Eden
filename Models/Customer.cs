@@ -22,6 +22,7 @@ namespace Eden.Models
         public byte MembershipTypeId { get; set; } //foreign key. Used for optimisation. 
 
         [Display(Name="Date of Birth")]
-        public string Birthday { get; set; }
+        [Min18YearsIfAMember]
+        public DateTime? Birthday { get; set; }
     }
 }
