@@ -1,0 +1,13 @@
+﻿@model Eden.Models.Movie
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Name</h2>
+
+<p>Genre: @Model.Genre</p>
+<p>Release Date: @Model.ReleaseDate</p>
+<p>Date added to Eden: @Model.DateAdded</p>
+<p>Number in Stock: @Model.NumberInStock</p>
+
