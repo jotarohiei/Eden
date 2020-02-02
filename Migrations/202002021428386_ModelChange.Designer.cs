@@ -7,13 +7,13 @@ namespace Eden.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class UpdateMovies1 : IMigrationMetadata
+    public sealed partial class ModelChange : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateMovies1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ModelChange));
         
         string IMigrationMetadata.Id
         {
-            get { return "202001221600166_UpdateMovies1"; }
+            get { return "202002021428386_ModelChange"; }
         }
         
         string IMigrationMetadata.Source

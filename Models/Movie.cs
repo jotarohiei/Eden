@@ -19,11 +19,11 @@ namespace Eden.Models
 
         [Required]
         [Display(Name = "Release Date")]
-        public string ReleaseDate { get; set; }
+        public DateTime ReleaseDate { get; set; }
 
         [Required]
         [Display(Name = "Date Added")]
-        public string DateAdded { get; set; }
+        public DateTime DateAdded { get; set; }
 
         [Required]
         [Display(Name = "Number in Stock")]
