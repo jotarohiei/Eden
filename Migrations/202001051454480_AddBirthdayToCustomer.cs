@@ -7,12 +7,12 @@ namespace Eden.Migrations
     {
         public override void Up()
         {
-            AlterColumn("dbo.Customers", "Birthday", c => c.String());
+            AddColumn("dbo.Customers", "Birthday", c => c.DateTime());
         }
         
         public override void Down()
         {
-            AlterColumn("dbo.Customers", "Birthday", c => c.Int());
+            DropColumn("dbo.Customers", "Birthday");
         }
     }
 }
