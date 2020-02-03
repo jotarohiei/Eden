@@ -3,8 +3,12 @@
     ViewBag.Title = "New";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>New Customer</h2>
+@{
+    var title = string.IsNullOrWhiteSpace(Model.Customer.Name) ? "New Customer" : Model.Customer.Name;
+}
+<h2>
+    @title
+</h2>
 
 @using (Html.BeginForm("Save", "Customers"))
 {
@@ -47,7 +51,7 @@
 
 @section scripts
 {
-    @Scripts.Render("~/bundles/jqueryval")    
-    
+    @Scripts.Render("~/bundles/jqueryval")
+
 }
 

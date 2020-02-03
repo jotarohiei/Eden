@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Eden.Models;
 using Eden.ViewModels;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 
 namespace Eden.Controllers
 {
@@ -60,6 +61,13 @@ namespace Eden.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new Movie();
+                return View("MovieForm", viewModel);
+            }
+
+
             if (movie.Id == 0)
                 _context.Movies.Add(movie);
             else
@@ -73,7 +81,15 @@ namespace Eden.Controllers
                 movieInDb.NumberInStock = movie.NumberInStock;
             }
 
-            _context.SaveChanges();
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                Console.WriteLine(e);
+            }
+
 
             return RedirectToAction("Index", "Movies");
         }

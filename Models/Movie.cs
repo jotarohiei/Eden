@@ -15,6 +15,7 @@ namespace Eden.Models
         public string Name { get; set; }
 
         [Required]
+        [StringLength(250)]
         public string Genre { get; set; }
 
         [Required]
@@ -26,6 +27,7 @@ namespace Eden.Models
         public string DateAdded { get; set; }
 
         [Required]
+        [Range(0,30)]
         [Display(Name = "Number in Stock")]
         public short NumberInStock { get; set; }
     }
