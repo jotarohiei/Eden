@@ -227,13 +227,9 @@
     <Compile Include="Migrations\202001081852477_ApplyAnnotationsToMovie.Designer.cs">
       <DependentUpon>202001081852477_ApplyAnnotationsToMovie.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202001101454344_UpdateCustomer.cs" />
-    <Compile Include="Migrations\202001101454344_UpdateCustomer.Designer.cs">
-      <DependentUpon>202001101454344_UpdateCustomer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001221600166_UpdateMovies1.cs" />
-    <Compile Include="Migrations\202001221600166_UpdateMovies1.Designer.cs">
-      <DependentUpon>202001221600166_UpdateMovies1.cs</DependentUpon>
+    <Compile Include="Migrations\202002021428386_ModelChange.cs" />
+    <Compile Include="Migrations\202002021428386_ModelChange.Designer.cs">
+      <DependentUpon>202002021428386_ModelChange.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202001231252395_UpdateMovie.cs" />
     <Compile Include="Migrations\202001231252395_UpdateMovie.Designer.cs">
@@ -367,11 +363,8 @@
     <EmbeddedResource Include="Migrations\202001081852477_ApplyAnnotationsToMovie.resx">
       <DependentUpon>202001081852477_ApplyAnnotationsToMovie.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001101454344_UpdateCustomer.resx">
-      <DependentUpon>202001101454344_UpdateCustomer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001221600166_UpdateMovies1.resx">
-      <DependentUpon>202001221600166_UpdateMovies1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002021428386_ModelChange.resx">
+      <DependentUpon>202002021428386_ModelChange.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001231252395_UpdateMovie.resx">
       <DependentUpon>202001231252395_UpdateMovie.cs</DependentUpon>
